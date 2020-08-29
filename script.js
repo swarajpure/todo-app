@@ -55,35 +55,3 @@ addButton.addEventListener('click', () => {
 
 
 
-
-// addButton.onclick = () => {
-//     let newItem = inputText.value;
-//     inputText.value = '';
-
-//     const itemsFromLocal = JSON.parse(localStorage.getItem('allItems'));
-//     if(itemsFromLocal){
-//         itemsFromLocal.forEach((todo) => {
-//             todos.push(todo);
-//         }
-//     )};
-//     todos.push(newItem);
-//     window.localStorage.setItem('allItems', JSON.stringify(todos));
-
-//     const items = document.createElement('li');
-//     const item = document.createElement('span');
-//     const deleteBtn = document.createElement('button');
-
-//     items.appendChild(item);
-//     item.textContent = newItem;
-//     item.appendChild(deleteBtn);
-//     deleteBtn.textContent = 'Delete it';
-//     ul.appendChild(items);
-
-    
-
-//     deleteBtn.onclick = () => {
-//         ul.removeChild(items);
-//     }
-
-//     inputText.focus();
-// }
