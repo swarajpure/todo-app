@@ -1,52 +1,89 @@
 const inputText = document.querySelector('#inputText');
 const addButton = document.querySelector('#addBtn');
 const ul = document.querySelector('ul');
-const itemsObj = { todos: [] };
+
+let todos;
 
 if (localStorage.length){
-    const itemsFromLocal = JSON.parse(localStorage.getItem('allItems'));
-        if(itemsFromLocal.length){
-            itemsFromLocal.forEach((todo) => {
-                let items = document.createElement('li');
-                let itemSpan = document.createElement('span');
-                let deleteBtn = document.createElement('button');
-                items.appendChild(itemSpan);
-                itemSpan.textContent = todo;
-                itemSpan.appendChild(deleteBtn);
-                deleteBtn.textContent = 'Delete it';
-                ul.appendChild(items);
-            })
-        }
+    todos = JSON.parse(localStorage.getItem('allItems'));
+}
+else {
+    todos = [];
 }
 
-addButton.onclick = () => {
-    let newItem = inputText.value;
-    inputText.value = '';
-
-    const itemsFromLocal = JSON.parse(localStorage.getItem('allItems'));
-    if(itemsFromLocal){
-        itemsFromLocal.forEach((todo) => {
-            itemsObj.todos.push(todo);
-        }
-    )};
-    itemsObj.todos.push(newItem);
-    window.localStorage.setItem('allItems', JSON.stringify(itemsObj.todos));
-
-    const items = document.createElement('li');
-    const item = document.createElement('span');
+const showItem = (todo) => {
+    const li = document.createElement('li');
+    const span = document.createElement('span');
     const deleteBtn = document.createElement('button');
+    deleteBtn["todoId"] = todo.id;
 
-    items.appendChild(item);
-    item.textContent = newItem;
-    item.appendChild(deleteBtn);
+    li.appendChild(span);
+    span.textContent = todo.value;    
+    li.appendChild(deleteBtn);
     deleteBtn.textContent = 'Delete it';
-    ul.appendChild(items);
+    ul.appendChild(li);
+    deleteBtn.addEventListener('click', (e) => {
+        console.log(e.target.todoId);
+        ul.removeChild(li);
+    }) 
+}
+
+
+
+if (todos){
+    todos.forEach((todo) => {
+        showItem(todo);
+    })
+}
+
+addButton.addEventListener('click', () => {
+    const newText = inputText.value;
+    let todo = { 
+        id: new Date().getTime(),
+        value: newText
+    }
+    if(!newText.includes[todos]){
+        todos.push(todo);
+        localStorage.setItem('allItems', JSON.stringify(todos));
+        console.log(`Adding ${newText} to localStorage`);
+        console.log(localStorage.getItem('allItems'));
+        console.log(todos);
+    }
+    showItem(todo);
+    inputText.value = '';
+})
+
+
+
+
+// addButton.onclick = () => {
+//     let newItem = inputText.value;
+//     inputText.value = '';
+
+//     const itemsFromLocal = JSON.parse(localStorage.getItem('allItems'));
+//     if(itemsFromLocal){
+//         itemsFromLocal.forEach((todo) => {
+//             todos.push(todo);
+//         }
+//     )};
+//     todos.push(newItem);
+//     window.localStorage.setItem('allItems', JSON.stringify(todos));
+
+//     const items = document.createElement('li');
+//     const item = document.createElement('span');
+//     const deleteBtn = document.createElement('button');
+
+//     items.appendChild(item);
+//     item.textContent = newItem;
+//     item.appendChild(deleteBtn);
+//     deleteBtn.textContent = 'Delete it';
+//     ul.appendChild(items);
 
     
 
-    deleteBtn.onclick = () => {
-        ul.removeChild(items);
-    }
+//     deleteBtn.onclick = () => {
+//         ul.removeChild(items);
+//     }
 
-    inputText.focus();
-}
+//     inputText.focus();
+// }
