@@ -23,7 +23,15 @@ const showItem = (todo) => {
     deleteBtn.textContent = 'Delete it';
     ul.appendChild(li);
     deleteBtn.addEventListener('click', (e) => {
-        console.log(e.target.todoId);
+        const idTobeRemoved = e.target.todoId;
+        console.log(idTobeRemoved);
+        todos.forEach((todo) => { 
+            if(todo.id === idTobeRemoved) {
+                todos.splice(todos.indexOf(todo), 1);
+                localStorage.setItem('allItems', JSON.stringify(todos));
+            }
+        });
+        
         ul.removeChild(li);
     }) 
 }
