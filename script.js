@@ -24,14 +24,12 @@ const showItem = (todo) => {
     ul.appendChild(li);
     deleteBtn.addEventListener('click', (e) => {
         const idTobeRemoved = e.target.todoId;
-        console.log(idTobeRemoved);
         todos.forEach((todo) => { 
             if(todo.id === idTobeRemoved) {
                 todos.splice(todos.indexOf(todo), 1);
-                localStorage.setItem('allItems', JSON.stringify(todos));
+                localStorage.setItem('allItems', JSON.stringify(todos));    
             }
         });
-        
         ul.removeChild(li);
     }) 
 }
@@ -50,13 +48,9 @@ addButton.addEventListener('click', () => {
         id: new Date().getTime(),
         value: newText
     }
-    if(!newText.includes[todos]){
-        todos.push(todo);
-        localStorage.setItem('allItems', JSON.stringify(todos));
-        console.log(`Adding ${newText} to localStorage`);
-        console.log(localStorage.getItem('allItems'));
-        console.log(todos);
-    }
+    todos.push(todo);
+    localStorage.setItem('allItems', JSON.stringify(todos));
+
     showItem(todo);
     inputText.value = '';
 })
