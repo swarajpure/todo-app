@@ -1,3 +1,19 @@
+.my-app {
+    text-align: center;
+    border: black solid 1px;
+    margin-left: 30%;
+    margin-right: 30%;
+    box-sizing: border-box;
+}
+
 li button{
     margin-left: 20px;
+}
+
+@media (max-width: 500px) {
+    .my-app {
+        margin-left: 10%;
+        margin-right: 10%;
+        box-sizing: border-box;
+    }
 }
