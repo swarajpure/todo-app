@@ -25,6 +25,18 @@ const showItem = (todo) => {
     ul.appendChild(li); 
 }
 
+const deleteIt = (e) => {
+    const idTobeRemoved = e.target.todoId;
+    console.log(e.target);
+    todos.forEach((todo) => { 
+        if(todo.id === idTobeRemoved) {
+            todos.splice(todos.indexOf(todo), 1);
+            localStorage.setItem('allItems', JSON.stringify(todos));    
+            ul.removeChild(e.target.parentNode);
+        }
+    });   
+};
+
 const showItems = () => {
     if (todos){
         todos.forEach((todo) => {
@@ -46,16 +58,6 @@ const addItem = () => {
     inputText.value = '';
 };
 
+showItems();
 addButton.addEventListener('click', addItem);   
 
-const deleteIt = (e) => {
-    const idTobeRemoved = e.target.todoId;
-    console.log(e.target);
-    todos.forEach((todo) => { 
-        if(todo.id === idTobeRemoved) {
-            todos.splice(todos.indexOf(todo), 1);
-            localStorage.setItem('allItems', JSON.stringify(todos));    
-            ul.removeChild(e.target.parentNode);
-        }
-    });   
-};
