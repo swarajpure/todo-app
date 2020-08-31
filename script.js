@@ -27,7 +27,6 @@ const showItem = (todo) => {
 
 const deleteIt = (e) => {
     const idTobeRemoved = e.target.todoId;
-    console.log(e.target);
     todos.forEach((todo) => { 
         if(todo.id === idTobeRemoved) {
             todos.splice(todos.indexOf(todo), 1);
