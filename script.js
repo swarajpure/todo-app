@@ -47,15 +47,17 @@ const showItems = () => {
 
 const addItem = () => {
     const newText = inputText.value;
-    let todo = { 
-        id: new Date().getTime(),
-        value: newText
-    }
-    todos.push(todo);
-    localStorage.setItem('allItems', JSON.stringify(todos));
+    if (newText != ""){
+        let todo = { 
+            id: new Date().getTime(),
+            value: newText
+        }
+        todos.push(todo);
+        localStorage.setItem('allItems', JSON.stringify(todos));
 
-    showItem(todo);
-    inputText.value = '';
+        showItem(todo);
+        inputText.value = '';
+    }
 };
 
 showItems();
