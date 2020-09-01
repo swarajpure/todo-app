@@ -6,8 +6,16 @@
     box-sizing: border-box;
 }
 
-li button{
+#addBtn, li button{
     margin-left: 20px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#addBtn, li button:hover {
+    background-color: #e8e4e3;
 }
 
 @media (max-width: 500px) {
